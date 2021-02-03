@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - lcov.info - widgets/category_card.dart</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">widgets</a> - category_card.dart<span style="font-size: 80%;"> (source / <a href="category_card.dart.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">lcov.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">20</td>
+            <td class="headerCovTableEntry">20</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2021-01-27 11:32:55</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntryHi">-</td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : import 'package:flutter/material.dart';</a>
+<span class="lineNum">       2 </span>            : import 'package:random_color/random_color.dart';
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : class CategoryCard extends StatelessWidget {
+<span class="lineNum">       5 </span>            :   String emoji;
+<span class="lineNum">       6 </span>            :   String categoryName;
+<span class="lineNum">       7 </span>            :   int categoryAmount;
+<span class="lineNum">       8 </span>            :   Function onPressed;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            :   RandomColor _randomColor = RandomColor();
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span><span class="lineCov">          1 :   CategoryCard(</span>
+<span class="lineNum">      13 </span>            :       {@required this.emoji,
+<span class="lineNum">      14 </span>            :       @required this.categoryName,
+<span class="lineNum">      15 </span>            :       @required this.categoryAmount,
+<span class="lineNum">      16 </span>            :       @required this.onPressed});
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            :   // Обработка &quot;вдохновляющих&quot; цитат
+<span class="lineNum">      19 </span><span class="lineCov">          1 :   String categoryInspired(String categoryName) {</span>
+<span class="lineNum">      20 </span><span class="lineCov">          1 :     if (categoryName != &quot;inspirational&quot;) {</span>
+<span class="lineNum">      21 </span><span class="lineCov">          1 :       return 'Buddha\'s quotes about ${categoryName}';</span>
+<span class="lineNum">      22 </span>            :     } else {
+<span class="lineNum">      23 </span>            :       return 'Inspirational Buddha\'s quotes';
+<span class="lineNum">      24 </span>            :     }
+<span class="lineNum">      25 </span>            :   }
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span><span class="lineCov">          1 :   @override</span>
+<span class="lineNum">      28 </span>            :   Widget build(BuildContext context) {
+<span class="lineNum">      29 </span><span class="lineCov">          1 :     return Container(</span>
+<span class="lineNum">      30 </span><span class="lineCov">          1 :       padding: EdgeInsets.fromLTRB(10, 0, 10, 0),</span>
+<span class="lineNum">      31 </span><span class="lineCov">          1 :       child: Card(</span>
+<span class="lineNum">      32 </span>            :         elevation: 10,
+<span class="lineNum">      33 </span><span class="lineCov">          1 :         child: TextButton(</span>
+<span class="lineNum">      34 </span><span class="lineCov">          1 :           child: ListTile(</span>
+<span class="lineNum">      35 </span><span class="lineCov">          1 :             contentPadding: EdgeInsets.fromLTRB(4, 0, 0, 0),</span>
+<span class="lineNum">      36 </span><span class="lineCov">          1 :             leading: CircleAvatar(</span>
+<span class="lineNum">      37 </span>            :               backgroundColor:
+<span class="lineNum">      38 </span><span class="lineCov">          2 :                   _randomColor.randomColor(colorHue: ColorHue.blue),</span>
+<span class="lineNum">      39 </span>            :               radius: 30,
+<span class="lineNum">      40 </span><span class="lineCov">          1 :               child: Text(</span>
+<span class="lineNum">      41 </span><span class="lineCov">          1 :                 emoji,</span>
+<span class="lineNum">      42 </span><span class="lineCov">          1 :                 style: TextStyle(</span>
+<span class="lineNum">      43 </span>            :                   fontSize: 28,
+<span class="lineNum">      44 </span>            :                 ),
+<span class="lineNum">      45 </span>            :               ),
+<span class="lineNum">      46 </span>            :             ),
+<span class="lineNum">      47 </span><span class="lineCov">          1 :             title: Text(</span>
+<span class="lineNum">      48 </span><span class="lineCov">          2 :               categoryInspired(categoryName),</span>
+<span class="lineNum">      49 </span>            :             ),
+<span class="lineNum">      50 </span><span class="lineCov">          3 :             subtitle: Text('Total: ${categoryAmount} quotes in category'),</span>
+<span class="lineNum">      51 </span>            :           ),
+<span class="lineNum">      52 </span><span class="lineCov">          1 :           onPressed: onPressed,</span>
+<span class="lineNum">      53 </span>            :         ),
+<span class="lineNum">      54 </span>            :       ),
+<span class="lineNum">      55 </span>            :     );
+<span class="lineNum">      56 </span>            :   }
+<span class="lineNum">      57 </span>            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

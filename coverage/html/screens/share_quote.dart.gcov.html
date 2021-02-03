@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - lcov.info - screens/share_quote.dart</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">screens</a> - share_quote.dart<span style="font-size: 80%;"> (source / <a href="share_quote.dart.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">lcov.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">97</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2021-01-27 11:32:55</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntryHi">-</td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : import 'package:flutter/material.dart';</a>
+<span class="lineNum">       2 </span>            : import 'package:flutter/services.dart';
+<span class="lineNum">       3 </span>            : import 'package:path_provider/path_provider.dart';
+<span class="lineNum">       4 </span>            : import 'package:provider/provider.dart';
+<span class="lineNum">       5 </span>            : import 'package:statusquotes/models/models.dart';
+<span class="lineNum">       6 </span>            : import 'package:statusquotes/stores/decoration_store.dart';
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : import '../widgets/sharing_button.dart';
+<span class="lineNum">       9 </span>            : import '../widgets/app_scaffold.dart';
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+<span class="lineNum">      12 </span>            : import '../services/get_square_sizes.dart';
+<span class="lineNum">      13 </span>            : import '../services/constants.dart';
+<span class="lineNum">      14 </span>            : import '../screens/choose_back.dart';
+<span class="lineNum">      15 </span>            : import '../screens/choose_font.dart';
+<span class="lineNum">      16 </span>            : import 'package:auto_size_text/auto_size_text.dart';
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span>            : import '../stores/quote_store.dart';
+<span class="lineNum">      19 </span>            : import '../stores/decoration_store.dart';
+<span class="lineNum">      20 </span>            : import 'package:flutter_mobx/flutter_mobx.dart';
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span>            : import 'package:flutter/rendering.dart';
+<span class="lineNum">      23 </span>            : import 'package:share/share.dart';
+<span class="lineNum">      24 </span>            : import 'dart:async';
+<span class="lineNum">      25 </span>            : import 'dart:io';
+<span class="lineNum">      26 </span>            : import 'dart:typed_data';
+<span class="lineNum">      27 </span>            : import 'dart:ui' as ui;
+<span class="lineNum">      28 </span>            : 
+<span class="lineNum">      29 </span>            : class ShareQuote extends StatefulWidget {
+<span class="lineNum">      30 </span>            :   static const String id = '/share';
+<span class="lineNum">      31 </span>            : 
+<span class="lineNum">      32 </span><span class="lineNoCov">          0 :   @override</span>
+<span class="lineNum">      33 </span><span class="lineNoCov">          0 :   _ShareQuoteState createState() =&gt; _ShareQuoteState();</span>
+<span class="lineNum">      34 </span>            : }
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span>            : class _ShareQuoteState extends State&lt;ShareQuote&gt; {
+<span class="lineNum">      37 </span>            :   double currentWidth;
+<span class="lineNum">      38 </span>            :   double currentHeight;
+<span class="lineNum">      39 </span>            :   bool square = false;
+<span class="lineNum">      40 </span>            : 
+<span class="lineNum">      41 </span>            :   // спиннер на кнопке - true
+<span class="lineNum">      42 </span>            :   bool button1;
+<span class="lineNum">      43 </span>            :   // ключ для поиска виджета
+<span class="lineNum">      44 </span><span class="lineNoCov">          0 :   static GlobalKey _globalKey = GlobalKey();</span>
+<span class="lineNum">      45 </span>            : 
+<span class="lineNum">      46 </span><span class="lineNoCov">          0 :   @override</span>
+<span class="lineNum">      47 </span>            :   void initState() {
+<span class="lineNum">      48 </span><span class="lineNoCov">          0 :     button1 = false;</span>
+<span class="lineNum">      49 </span><span class="lineNoCov">          0 :     super.initState();</span>
+<span class="lineNum">      50 </span>            :   }
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span>            :   // Собственно функция для снятия скриншота с виджета, обернутого в RepaintBoundary
+<span class="lineNum">      53 </span><span class="lineNoCov">          0 :   Future&lt;Null&gt; shareScreenshot() async {</span>
+<span class="lineNum">      54 </span>            :     // включить спиннер
+<span class="lineNum">      55 </span><span class="lineNoCov">          0 :     setState(() {</span>
+<span class="lineNum">      56 </span><span class="lineNoCov">          0 :       button1 = true;</span>
+<span class="lineNum">      57 </span>            :     });
+<span class="lineNum">      58 </span>            :     try {
+<span class="lineNum">      59 </span>            :       RenderRepaintBoundary boundary =
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 :           _globalKey.currentContext.findRenderObject();</span>
+<span class="lineNum">      61 </span>            :       // if (boundary.debugNeedsPaint) {
+<span class="lineNum">      62 </span>            :       //   Timer(Duration(seconds: 1), () =&gt; shareScreenshot());
+<span class="lineNum">      63 </span>            :       //   return null;
+<span class="lineNum">      64 </span>            :       // }
+<span class="lineNum">      65 </span><span class="lineNoCov">          0 :       ui.Image image = await boundary.toImage(pixelRatio: 5);</span>
+<span class="lineNum">      66 </span>            :       // final directory = (await getExternalStorageDirectory()).path;
+<span class="lineNum">      67 </span>            :       // final directory = (await getApplicationDocumentsDirectory()).path;
+<span class="lineNum">      68 </span><span class="lineNoCov">          0 :       final directory = (await getTemporaryDirectory()).path;</span>
+<span class="lineNum">      69 </span><span class="lineNoCov">          0 :       ByteData byteData = await image.toByteData(</span>
+<span class="lineNum">      70 </span>            :         format: ui.ImageByteFormat.png,
+<span class="lineNum">      71 </span>            :       );
+<span class="lineNum">      72 </span><span class="lineNoCov">          0 :       Uint8List pngBytes = byteData.buffer.asUint8List();</span>
+<span class="lineNum">      73 </span><span class="lineNoCov">          0 :       final File imgFile = File('$directory/quote.png');</span>
+<span class="lineNum">      74 </span><span class="lineNoCov">          0 :       imgFile.writeAsBytesSync(pngBytes);</span>
+<span class="lineNum">      75 </span><span class="lineNoCov">          0 :       final RenderBox box = context.findRenderObject();</span>
+<span class="lineNum">      76 </span><span class="lineNoCov">          0 :       Share.shareFiles(['$directory/quote.png'],</span>
+<span class="lineNum">      77 </span><span class="lineNoCov">          0 :           sharePositionOrigin: box.localToGlobal(Offset.zero) &amp; box.size);</span>
+<span class="lineNum">      78 </span><span class="lineNoCov">          0 :     } on PlatformException catch (e) {</span>
+<span class="lineNum">      79 </span><span class="lineNoCov">          0 :       print(&quot;Exception while taking screenshot:&quot; + e.toString());</span>
+<span class="lineNum">      80 </span>            :     }
+<span class="lineNum">      81 </span><span class="lineNoCov">          0 :     setState(() {</span>
+<span class="lineNum">      82 </span><span class="lineNoCov">          0 :       button1 = false;</span>
+<span class="lineNum">      83 </span>            :     });
+<span class="lineNum">      84 </span>            :   }
+<span class="lineNum">      85 </span>            : 
+<span class="lineNum">      86 </span><span class="lineNoCov">          0 :   void changeAspect(BuildContext context) {</span>
+<span class="lineNum">      87 </span>            :     // максимальная ширина - ширина экрана
+<span class="lineNum">      88 </span>            :     // максимальная высота - высота экрана-195 (kSafeZone)
+<span class="lineNum">      89 </span><span class="lineNoCov">          0 :     double screenWidth = MediaQuery.of(context).size.width;</span>
+<span class="lineNum">      90 </span><span class="lineNoCov">          0 :     double screenHeight = MediaQuery.of(context).size.height;</span>
+<span class="lineNum">      91 </span>            : 
+<span class="lineNum">      92 </span><span class="lineNoCov">          0 :     if (square) {</span>
+<span class="lineNum">      93 </span><span class="lineNoCov">          0 :       setState(</span>
+<span class="lineNum">      94 </span><span class="lineNoCov">          0 :         () {</span>
+<span class="lineNum">      95 </span><span class="lineNoCov">          0 :           square = false;</span>
+<span class="lineNum">      96 </span><span class="lineNoCov">          0 :           currentWidth = screenWidth;</span>
+<span class="lineNum">      97 </span><span class="lineNoCov">          0 :           if (currentWidth &gt; screenHeight - kSafeZone) {</span>
+<span class="lineNum">      98 </span><span class="lineNoCov">          0 :             currentHeight = screenHeight - kSafeZone;</span>
+<span class="lineNum">      99 </span><span class="lineNoCov">          0 :             currentWidth = currentHeight;</span>
+<span class="lineNum">     100 </span>            :           } else {
+<span class="lineNum">     101 </span><span class="lineNoCov">          0 :             currentHeight = currentWidth;</span>
+<span class="lineNum">     102 </span>            :           }
+<span class="lineNum">     103 </span>            :         },
+<span class="lineNum">     104 </span>            :       );
+<span class="lineNum">     105 </span>            :     } else {
+<span class="lineNum">     106 </span><span class="lineNoCov">          0 :       setState(</span>
+<span class="lineNum">     107 </span><span class="lineNoCov">          0 :         () {</span>
+<span class="lineNum">     108 </span><span class="lineNoCov">          0 :           square = true;</span>
+<span class="lineNum">     109 </span><span class="lineNoCov">          0 :           currentHeight = screenHeight - kSafeZone;</span>
+<span class="lineNum">     110 </span><span class="lineNoCov">          0 :           currentWidth = currentHeight / 16 * 9;</span>
+<span class="lineNum">     111 </span>            :         },
+<span class="lineNum">     112 </span>            :       );
+<span class="lineNum">     113 </span>            :     }
+<span class="lineNum">     114 </span>            :   }
+<span class="lineNum">     115 </span>            : 
+<span class="lineNum">     116 </span><span class="lineNoCov">          0 :   @override</span>
+<span class="lineNum">     117 </span>            :   Widget build(BuildContext context) {
+<span class="lineNum">     118 </span>            :     //обращение к стору для текущей категории и цитаты
+<span class="lineNum">     119 </span><span class="lineNoCov">          0 :     final quoteStore = Provider.of&lt;QuoteStore&gt;(context);</span>
+<span class="lineNum">     120 </span>            :     //обращение к стору для декорирования цитаты
+<span class="lineNum">     121 </span><span class="lineNoCov">          0 :     final decorationStore = Provider.of&lt;DecorationStore&gt;(context);</span>
+<span class="lineNum">     122 </span>            : 
+<span class="lineNum">     123 </span><span class="lineNoCov">          0 :     Quote currentQuote = quoteStore.currentQuote;</span>
+<span class="lineNum">     124 </span>            : 
+<span class="lineNum">     125 </span><span class="lineNoCov">          0 :     return AppScaffold(</span>
+<span class="lineNum">     126 </span>            :       title: &quot;Share your quote!&quot;,
+<span class="lineNum">     127 </span>            :       currentSelectedNavBarItem: 2,
+<span class="lineNum">     128 </span><span class="lineNoCov">          0 :       body: Column(</span>
+<span class="lineNum">     129 </span>            :         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+<span class="lineNum">     130 </span><span class="lineNoCov">          0 :         children: [</span>
+<span class="lineNum">     131 </span><span class="lineNoCov">          0 :           Card(</span>
+<span class="lineNum">     132 </span>            :             elevation: 3,
+<span class="lineNum">     133 </span><span class="lineNoCov">          0 :             child: RepaintBoundary(</span>
+<span class="lineNum">     134 </span><span class="lineNoCov">          0 :               key: _globalKey,</span>
+<span class="lineNum">     135 </span><span class="lineNoCov">          0 :               child: Observer(</span>
+<span class="lineNum">     136 </span><span class="lineNoCov">          0 :                 builder: (_) =&gt; Container(</span>
+<span class="lineNum">     137 </span><span class="lineNoCov">          0 :                   height: currentHeight == null</span>
+<span class="lineNum">     138 </span><span class="lineNoCov">          0 :                       ? getSquareSizes(context)</span>
+<span class="lineNum">     139 </span><span class="lineNoCov">          0 :                       : currentHeight,</span>
+<span class="lineNum">     140 </span><span class="lineNoCov">          0 :                   width: currentWidth == null</span>
+<span class="lineNum">     141 </span><span class="lineNoCov">          0 :                       ? getSquareSizes(context)</span>
+<span class="lineNum">     142 </span><span class="lineNoCov">          0 :                       : currentWidth,</span>
+<span class="lineNum">     143 </span><span class="lineNoCov">          0 :                   decoration: decorationStore.quoteBackgroundDecoration,</span>
+<span class="lineNum">     144 </span><span class="lineNoCov">          0 :                   child: Column(</span>
+<span class="lineNum">     145 </span>            :                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+<span class="lineNum">     146 </span><span class="lineNoCov">          0 :                     children: [</span>
+<span class="lineNum">     147 </span><span class="lineNoCov">          0 :                       Container(</span>
+<span class="lineNum">     148 </span>            :                         height: 10,
+<span class="lineNum">     149 </span>            :                       ),
+<span class="lineNum">     150 </span><span class="lineNoCov">          0 :                       Container(</span>
+<span class="lineNum">     151 </span><span class="lineNoCov">          0 :                         padding: EdgeInsets.all(20),</span>
+<span class="lineNum">     152 </span>            : //                      height: 300,
+<span class="lineNum">     153 </span><span class="lineNoCov">          0 :                         height: currentHeight == null</span>
+<span class="lineNum">     154 </span><span class="lineNoCov">          0 :                             ? getSquareSizes(context) - 140</span>
+<span class="lineNum">     155 </span><span class="lineNoCov">          0 :                             : currentHeight - 140,</span>
+<span class="lineNum">     156 </span><span class="lineNoCov">          0 :                         child: Center(</span>
+<span class="lineNum">     157 </span><span class="lineNoCov">          0 :                           child: AutoSizeText(</span>
+<span class="lineNum">     158 </span><span class="lineNoCov">          0 :                             '\&quot;${currentQuote.content}\&quot;',</span>
+<span class="lineNum">     159 </span><span class="lineNoCov">          0 :                             style: TextStyle(</span>
+<span class="lineNum">     160 </span><span class="lineNoCov">          0 :                               fontSize: decorationStore.quoteFontSize.quoteSize</span>
+<span class="lineNum">     161 </span><span class="lineNoCov">          0 :                                   .toDouble(),</span>
+<span class="lineNum">     162 </span><span class="lineNoCov">          0 :                               color: decorationStore.quoteTextColor,</span>
+<span class="lineNum">     163 </span><span class="lineNoCov">          0 :                               fontFamily: decorationStore.quoteFont,</span>
+<span class="lineNum">     164 </span><span class="lineNoCov">          0 :                               shadows: decorationStore.quoteTextShadow,</span>
+<span class="lineNum">     165 </span>            :                             ),
+<span class="lineNum">     166 </span>            :                           ),
+<span class="lineNum">     167 </span>            :                         ),
+<span class="lineNum">     168 </span>            :                       ),
+<span class="lineNum">     169 </span><span class="lineNoCov">          0 :                       Container(</span>
+<span class="lineNum">     170 </span>            :                         width: double.infinity,
+<span class="lineNum">     171 </span><span class="lineNoCov">          0 :                         padding: EdgeInsets.all(20),</span>
+<span class="lineNum">     172 </span><span class="lineNoCov">          0 :                         child: AutoSizeText(</span>
+<span class="lineNum">     173 </span><span class="lineNoCov">          0 :                           currentQuote.author,</span>
+<span class="lineNum">     174 </span>            :                           maxLines: 1,
+<span class="lineNum">     175 </span>            :                           textAlign: TextAlign.right,
+<span class="lineNum">     176 </span><span class="lineNoCov">          0 :                           style: TextStyle(</span>
+<span class="lineNum">     177 </span><span class="lineNoCov">          0 :                             fontSize: decorationStore.quoteFontSize.authorSize</span>
+<span class="lineNum">     178 </span><span class="lineNoCov">          0 :                                 .toDouble(),</span>
+<span class="lineNum">     179 </span><span class="lineNoCov">          0 :                             color: decorationStore.quoteTextColor,</span>
+<span class="lineNum">     180 </span><span class="lineNoCov">          0 :                             fontFamily: decorationStore.quoteFont,</span>
+<span class="lineNum">     181 </span><span class="lineNoCov">          0 :                             shadows: decorationStore.quoteTextShadow,</span>
+<span class="lineNum">     182 </span>            :                           ),
+<span class="lineNum">     183 </span>            :                         ),
+<span class="lineNum">     184 </span>            :                       ),
+<span class="lineNum">     185 </span><span class="lineNoCov">          0 :                       Container(</span>
+<span class="lineNum">     186 </span>            :                         height: 10,
+<span class="lineNum">     187 </span>            :                       ),
+<span class="lineNum">     188 </span>            :                     ],
+<span class="lineNum">     189 </span>            :                   ),
+<span class="lineNum">     190 </span>            :                 ),
+<span class="lineNum">     191 </span>            :               ),
+<span class="lineNum">     192 </span>            :             ),
+<span class="lineNum">     193 </span>            :           ),
+<span class="lineNum">     194 </span><span class="lineNoCov">          0 :           Row(</span>
+<span class="lineNum">     195 </span>            :             mainAxisAlignment: MainAxisAlignment.spaceAround,
+<span class="lineNum">     196 </span><span class="lineNoCov">          0 :             children: [</span>
+<span class="lineNum">     197 </span><span class="lineNoCov">          0 :               SharingButton(</span>
+<span class="lineNum">     198 </span>            :                 tapIcon: FontAwesomeIcons.font,
+<span class="lineNum">     199 </span>            :                 title: 'Font',
+<span class="lineNum">     200 </span>            :                 tapFunction: chooseFont,
+<span class="lineNum">     201 </span>            :               ),
+<span class="lineNum">     202 </span><span class="lineNoCov">          0 :               SharingButton(</span>
+<span class="lineNum">     203 </span>            :                 tapIcon: Icons.color_lens,
+<span class="lineNum">     204 </span>            :                 title: 'Back',
+<span class="lineNum">     205 </span>            :                 tapFunction: chooseBack,
+<span class="lineNum">     206 </span>            :               ),
+<span class="lineNum">     207 </span><span class="lineNoCov">          0 :               SharingButton(</span>
+<span class="lineNum">     208 </span>            :                 tapIcon: Icons.aspect_ratio,
+<span class="lineNum">     209 </span>            :                 title: 'Aspect',
+<span class="lineNum">     210 </span><span class="lineNoCov">          0 :                 tapFunction: changeAspect,</span>
+<span class="lineNum">     211 </span>            :               ),
+<span class="lineNum">     212 </span>            :               // TODO: возможно переделать передачу иконнки на виджет
+<span class="lineNum">     213 </span><span class="lineNoCov">          0 :               SharingButton(</span>
+<span class="lineNum">     214 </span><span class="lineNoCov">          0 :                 tapIcon: button1 ? Icons.hourglass_top_sharp : Icons.send,</span>
+<span class="lineNum">     215 </span>            :                 title: 'Share',
+<span class="lineNum">     216 </span><span class="lineNoCov">          0 :                 tapFunction: (context) {</span>
+<span class="lineNum">     217 </span><span class="lineNoCov">          0 :                   shareScreenshot();</span>
+<span class="lineNum">     218 </span>            :                 },
+<span class="lineNum">     219 </span>            :               ),
+<span class="lineNum">     220 </span>            :             ],
+<span class="lineNum">     221 </span>            :           ),
+<span class="lineNum">     222 </span>            :         ],
+<span class="lineNum">     223 </span>            :       ),
+<span class="lineNum">     224 </span>            :     );
+<span class="lineNum">     225 </span>            :   }
+<span class="lineNum">     226 </span>            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
